@@ -3,6 +3,7 @@ package by.javaweb.flightcontrol.creation;
 //import org.apache.log4j.Logger;
 
 import by.javaweb.flightcontrol.utils.FileWorker;
+import by.javaweb.flightcontrol.utils.PropertyFileReader;
 import by.javaweb.flightcontrol.utils.XMLRWorker;
 import java.util.List;
 
@@ -10,13 +11,15 @@ import java.util.List;
 // Emulates work with properly built database
 public class AircraftDefaultParametersReader 
 {
-    private static final String XMLR_DATABASE_FILEPATH = "D:\\Users\\Александр\\Desktop\\aircrafts_default_params.xmlr";
+    private static final String XMLR_DATABASE_FILEPATH;
     //private static final Logger LOGGER;
 
     
     static
     {
         //LOGGER = Logger.getLogger("AircraftsDatabaseWorker");
+        XMLR_DATABASE_FILEPATH = 
+            PropertyFileReader.readProperty("XMLR_AIRCRAFTS_DEFAULT_PARAMS_DATABASE_FILEPATH");
     }
     
     private AircraftDefaultParametersReader()
