@@ -76,6 +76,33 @@ public class Airport implements Comparable<Airport>
         
         return name1.compareToIgnoreCase(name2);
     }
-    
+
+    @Override
+    public boolean equals(Object object)
+    {
+        if (this == object) return true;
+        if (!(object instanceof Airport)) return false;
+        if (!super.equals(object)) return false;
+
+        Airport airport = (Airport) object;
+
+        if (runwayLength != airport.runwayLength) return false;
+        if (name != null ? !name.equals(airport.name) : airport.name != null) return false;
+        if (id != null ? !id.equals(airport.id) : airport.id != null) return false;
+        if (location != null ? !location.equals(airport.location) : airport.location != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int result = super.hashCode();
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (id != null ? id.hashCode() : 0);
+        result = 31 * result + (location != null ? location.hashCode() : 0);
+        result = 31 * result + runwayLength;
+        return result;
+    }
 }
 

@@ -52,11 +52,7 @@ public abstract class Aircraft
         this.departurePoint = copyMe.departurePoint;
     }
 
-    
-    
-    
-    
-    
+
     public abstract double calcFreeCargoWeight();
 
     public Airport getDestinationPoint()
@@ -149,5 +145,37 @@ public abstract class Aircraft
     {
         this.state = state;
     }
+    
+    @Override
+    public boolean equals(Object object) 
+    {
+        if (this == object) return true;
+        if (!(object instanceof Aircraft)) return false;
+        if (!super.equals(object)) return false;
 
+        Aircraft aircraft = (Aircraft) object;
+
+        if (Double.compare(aircraft.baseWeight, baseWeight) != 0) return false;
+        if (Double.compare(aircraft.payload, payload) != 0) return false;
+        if (model != null ? !model.equals(aircraft.model) : aircraft.model != null) return false;
+        if (name != null ? !name.equals(aircraft.name) : aircraft.name != null) return false;
+        if (number != null ? !number.equals(aircraft.number) : aircraft.number != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() 
+    {
+        int result = super.hashCode();
+        long temp;
+        result = 31 * result + (model != null ? model.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (number != null ? number.hashCode() : 0);
+        temp = Double.doubleToLongBits(baseWeight);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(payload);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
 }

@@ -15,7 +15,7 @@ public class PassengerAirliner extends Plane
         this.seats = copyMe.seats;
     }
 
-    
+
     public int getSeats()
     {
         return seats;
@@ -24,6 +24,28 @@ public class PassengerAirliner extends Plane
     public void setSeats(int seats)
     {
         this.seats = seats;
+    }
+    
+    @Override
+    public boolean equals(Object object) 
+    {
+        if (this == object) return true;
+        if (!(object instanceof PassengerAirliner)) return false;
+        if (!super.equals(object)) return false;
+
+        PassengerAirliner that = (PassengerAirliner) object;
+
+        if (seats != that.seats) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() 
+    {
+        int result = super.hashCode();
+        result = 31 * result + seats;
+        return result;
     }
     
 }

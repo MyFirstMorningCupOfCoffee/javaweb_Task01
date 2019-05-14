@@ -16,33 +16,21 @@ public class Location
         this.longitude = longitude;
     }
 
-    /**
-     * @return the latitude
-     */
     public double getLatitude()
     {
         return latitude;
     }
 
-    /**
-     * @param latitude the latitude to set
-     */
     public void setLatitude(double latitude)
     {
         this.latitude = latitude;
     }
 
-    /**
-     * @return the longitude
-     */
     public double getLongitude()
     {
         return longitude;
     }
 
-    /**
-     * @param longitude the longitude to set
-     */
     public void setLongitude(double longitude)
     {
         this.longitude = longitude;
@@ -57,5 +45,31 @@ public class Location
         
         return result.toString();
     }
-    
+
+    @Override
+    public boolean equals(Object object)
+    {
+        if (this == object) return true;
+        if (!(object instanceof Location)) return false;
+        if (!super.equals(object)) return false;
+
+        Location location = (Location) object;
+
+        if (Double.compare(location.latitude, latitude) != 0) return false;
+        if (Double.compare(location.longitude, longitude) != 0) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int result = super.hashCode();
+        long temp;
+        temp = Double.doubleToLongBits(latitude);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(longitude);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
 }

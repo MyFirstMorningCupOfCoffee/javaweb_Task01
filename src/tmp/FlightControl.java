@@ -1,4 +1,5 @@
 package tmp;
+import by.javaweb.flightcontrol.creation.AirportsDatabaseWorker;
 import by.javaweb.flightcontrol.entity.*;
 import by.javaweb.flightcontrol.entity.aircraft.*;
 import by.javaweb.flightcontrol.repository.*;
@@ -53,7 +54,7 @@ public class FlightControl
         
         System.out.println(new PassengerAirliner(p2));
         
-
+        //System.out.println(AirportsDatabaseWorker.XMLR_DATABASE_FILEPATH );
     }
 
 }

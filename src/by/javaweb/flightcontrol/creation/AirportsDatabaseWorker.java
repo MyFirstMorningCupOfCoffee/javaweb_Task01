@@ -3,6 +3,7 @@ package by.javaweb.flightcontrol.creation;
 import java.util.List;
 import by.javaweb.flightcontrol.entity.*;
 import by.javaweb.flightcontrol.utils.FileWorker;
+import by.javaweb.flightcontrol.utils.PropertyFileReader;
 import by.javaweb.flightcontrol.utils.XMLRWorker;
 import java.util.ArrayList;
 
@@ -11,8 +12,10 @@ import java.util.ArrayList;
 // Emulates work with properly built database
 public class AirportsDatabaseWorker 
 {
-    private static final String XMLR_DATABASE_FILEPATH = "D:\\Users\\Александр\\Desktop\\airports.xmlr";
-    //private static final Logger LOGGER;
+    private static final String XMLR_DATABASE_FILEPATH;
+    
+
+//private static final Logger LOGGER;
     
     private AirportsDatabaseWorker()
     {
@@ -24,7 +27,10 @@ public class AirportsDatabaseWorker
     static
     {
         //LOGGER = Logger.getLogger("AirportsDatabaseWorker");
+        XMLR_DATABASE_FILEPATH = 
+            PropertyFileReader.readProperty("XMLR_AIRPORTS_DATABASE_FILEPATH");
         initObjects();
+        
     }
     
     // Tries to get proper airport by name from airports list

@@ -23,5 +23,24 @@ public abstract class Plane extends HeavierThanAirAircraft
     {
         this.runwayLength = minimalRunwayLengthInMeters;
     }
-    
+
+    @Override
+    public boolean equals(Object object) 
+    {
+        if (this == object) return true;
+        if (!(object instanceof Plane)) return false;
+        if (!super.equals(object)) return false;
+
+        Plane plane = (Plane) object;
+
+        return runwayLength == plane.runwayLength;
+    }
+
+    @Override
+    public int hashCode() 
+    {
+        int result = super.hashCode();
+        result = 31 * result + runwayLength;
+        return result;
+    }
 }

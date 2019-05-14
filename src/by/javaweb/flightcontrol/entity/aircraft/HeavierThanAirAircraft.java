@@ -20,6 +20,8 @@ public abstract class HeavierThanAirAircraft extends Aircraft
         engine = Engine.Type.NOT_DEFINED;
     }
 
+    
+
     public HeavierThanAirAircraft()
     {
     }
@@ -166,6 +168,38 @@ public abstract class HeavierThanAirAircraft extends Aircraft
               .append(getFuelCapacity());
         
         return result.toString(); 
+    }
+    
+    @Override
+    public boolean equals(Object object) 
+    {
+        if (this == object) return true;
+        if (!(object instanceof HeavierThanAirAircraft)) return false;
+        if (!super.equals(object)) return false;
+
+        HeavierThanAirAircraft that = (HeavierThanAirAircraft) object;
+
+        if (Double.compare(that.fuelCapacity, fuelCapacity) != 0) return false;
+        if (maxRange != that.maxRange) return false;
+        if (enginesQuantity != that.enginesQuantity) return false;
+        if (fuel != null ? !fuel.equals(that.fuel) : that.fuel != null) return false;
+        if (engine != null ? !engine.equals(that.engine) : that.engine != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() 
+    {
+        int result = super.hashCode();
+        long temp;
+        temp = Double.doubleToLongBits(fuelCapacity);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + maxRange;
+        result = 31 * result + (fuel != null ? fuel.hashCode() : 0);
+        result = 31 * result + (engine != null ? engine.hashCode() : 0);
+        result = 31 * result + enginesQuantity;
+        return result;
     }
     
 }
